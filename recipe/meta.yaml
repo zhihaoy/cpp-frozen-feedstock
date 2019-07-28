@@ -1,0 +1,42 @@
+{% set version = "737d750" %}
+{% set sha256 = "06a94c344382890cdc42653e7f1ab9f42220860205def2dacf9a2c843b058562" %}
+
+package:
+  name: frozen
+  version: "2019.6.9"
+
+source:
+  url: https://github.com/serge-sans-paille/frozen/archive/{{ version }}.zip
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True  # [win and vc<14]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - cmake >=3.1
+    - ninja
+  host: []  # Empty host dependency section
+
+test:
+  commands:
+    - test -f ${PREFIX}/include/frozen/set.h                # [unix]
+    - test -f ${PREFIX}/lib/cmake/frozen/frozenConfig.cmake # [unix]
+    - if exist %LIBRARY_PREFIX%\include\frozen\set.h (exit 0) else (exit 1)          # [win]
+    - if exist %LIBRARY_PREFIX%\lib\cmake\frozenConfig.cmake (exit 0) else (exit 1)  # [win]
+
+about:
+  home: https://github.com/serge-sans-paille/frozen
+  license: Apache License 2.0
+  license_file: LICENSE
+  license_family: APACHE
+  summary: Header-only, constexpr alternative to gperf for C++14 users
+  description: |
+    Header-only library that provides 0 cost initialization for immutable
+    containers and various algorithms.
+
+extra:
+  recipe-maintainers:
+    - zhihao.yuan
