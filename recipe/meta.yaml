@@ -22,10 +22,10 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/include/frozen/set.h                # [unix]
-    - test -f ${PREFIX}/lib/cmake/frozen/frozenConfig.cmake # [unix]
-    - if exist %LIBRARY_PREFIX%\include\frozen\set.h (exit 0) else (exit 1)          # [win]
-    - if exist %LIBRARY_PREFIX%\lib\cmake\frozenConfig.cmake (exit 0) else (exit 1)  # [win]
+    - test -f ${PREFIX}/include/frozen/set.h                   # [unix]
+    - test -f ${PREFIX}/share/cmake/frozen/frozenConfig.cmake  # [unix]
+    - if exist %LIBRARY_PREFIX%\include\frozen\set.h (exit 0) else (exit 1)            # [win]
+    - if exist %LIBRARY_PREFIX%\share\cmake\frozenConfig.cmake (exit 0) else (exit 1)  # [win]
 
 about:
   home: https://github.com/serge-sans-paille/frozen
